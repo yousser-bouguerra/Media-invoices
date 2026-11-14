@@ -4,7 +4,11 @@ Users upload an invoice (from the web or by scanning a QR code with their phone)
 
 Demo
 
-
+<img width="1103" height="595" alt="dashboardadmin" src="https://github.com/user-attachments/assets/8342d0e8-28c4-4694-97ea-6b04bfc449a6" />
+<img width="1111" height="591" alt="login admin 1" src="https://github.com/user-attachments/assets/96a92def-c043-4693-a20f-f096a457e551" />
+![Uploading loginuser.png…]()
+<img width="1097" height="598" alt="addarticle" src="https://github.com/user-attachments/assets/3d250f6e-6fdf-4755-8aaf-cf8d3cfeab07" />
+<img width="1100" height="610" alt="dashboarduser" src="https://github.com/user-attachments/assets/8c8852c3-a222-42ac-a159-90588d94b83b" />
 
 
 
@@ -13,14 +17,7 @@ Users
 4-step invoice upload stepper (file, OCR extraction, validation, confirmation).
 Mobile upload through a QR code: scan on the desktop page, take the photo with the phone, the invoice appears on the desktop.
 Validation pages to review and correct the extracted data.
-Real-time notifications when an invoice status changes (SignalR<img width="1101" height="593" alt="adduser" src="https://github.com/user-attachments/assets/df7ca811-a424-4a00-b48f-ac576247a1dc" /><img width="484" height="155" alt="conclusion" src="https://github.com/user-attachments/assets/3a9b197b-0eb0-490f-b611-ed68f6aefdfc" />
-![Uploading chatbot.png…]()
-![Uploading apresmodif.png…]()
-![Uploading analyseia.png…]()
-
-<img width="1097" height="598" alt="addarticle" src="https://github.com/user-attachments/assets/076d6be6-3376-4857-953a-062f4df0ee6a" />
-
-
+Real-time notifications when an invoice status changes (Signal)
 ).
 Dashboards for admin and user roles.
 
