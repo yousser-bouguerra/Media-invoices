@@ -1,91 +1,89 @@
-# MediBook – Web (Angular 18)
+Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
 
-![CI](https://github.com/yosseer12/medi-book/actions/workflows/ci.yml/badge.svg)
+Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies and checks it for fraud, then stores it and keeps the user informed in real time. Invoices can be synchronized with Divalto ERP.
 
-Front end of **MediBook**, a clinic appointment management platform. Patients find a doctor, choose a free time slot and manage their visits. Doctors follow their agenda and update appointment statuses.
+Demo
+<!-- Drag your demo video (.mp4, under 10 MB) here, or add a GIF: ![Demo](docs/demo.gif) -->
+Features
 
-> The ASP.NET Core API lives in [medibook-api](https://github.com/yosseer12/medibook-api) and is **not connected yet**. This front end runs on an in-memory data layer so it works on its own.
+Users
 
-## Demo
+4-step invoice upload stepper (file, OCR extraction, validation, confirmation).
+Mobile upload through a QR code: scan on the desktop page, take the photo with the phone, the invoice appears on the desktop.
+Validation pages to review and correct the extracted data.
+Real-time notifications when an invoice status changes (SignalR).
+Dashboards for admin and user roles.
 
-![Demo](docs/demo.gif)
+AI
 
-## Screenshots
+LangGraph agent in Node.js: a 5-node pipeline (extraction, validation, classification, anti-fraud, storage).
+OCR with Tesseract and ImageSharp, with a parser that handles two invoice formats (Divalto and Mediasoft).
+Chatbot powered by the OpenAI API.
+RAG pipeline with Ollama: embeddings of the invoice data, cosine similarity search, answers about the invoices.
 
-| Login | Find a doctor | Booking |
-|-------|---------------|---------|
-| <img src="docs/login.png" width="300" alt="Login page"> | <img src="docs/doctors.png" width="300" alt="Doctors list"> | <img src="docs/booking.png" width="300" alt="Booking page"> |
+Platform
 
-## How it works
+JWT authentication, BCrypt password hashing, role-based access (administrator and user).
+Automated synchronization flow with Divalto ERP.
+Architecture
+Angular front end  <--REST / SignalR-->  ASP.NET Core API  <--->  SQL Server
+                                              |
+                                              +--> LangGraph agent (Node.js / Express, POST /analyze-invoice)
+                                              +--> Ollama (embeddings + RAG, POST /api/rag/ask)
+                                              +--> OpenAI API (chatbot)
+                                              +--> Divalto ERP (synchronization)
+Part	Technologies
+Front end	Angular, TypeScript, RxJS, standalone components
+Backend API	ASP.NET Core, C#, Entity Framework Core, SQL Server, JWT, SignalR
+AI service	Node.js, Express, LangGraph
+OCR	Tesseract, ImageSharp
+LLM	OpenAI API, Ollama (RAG)
+Tools	Git, GitFlow, Scrum
+The AI pipeline
 
-**Patient**
-1. Sign in with a patient account and land on a dashboard (upcoming, completed and cancelled visits).
-2. Search doctors by name, city or specialty.
-3. Open a doctor, pick a date and an available time slot (taken or past slots are disabled), add a reason and confirm.
-4. Manage visits in *My appointments* (upcoming, past, cancelled) and cancel an upcoming one.
+The ASP.NET Core backend calls the Node.js service on /analyze-invoice. The LangGraph StateGraph runs five steps in order:
 
-**Doctor**
-1. Sign in with a doctor account and land on the agenda, with today's count, upcoming and completed visits.
-2. Mark a scheduled appointment as completed or cancel it.
+Extraction of the invoice fields from the OCR text.
+Validation of the extracted data.
+Classification of the invoice.
+Anti-fraud checks.
+Storage of the result through the main backend.
+The RAG pipeline
 
-A patient cannot open doctor pages and a doctor cannot open patient pages: the route guards redirect them to their own home.
+Embeddings of the invoice data are stored in SQL Server (as JSON). For a question, the backend computes the embedding, ranks the stored data by cosine similarity (computed in C#), and sends the best matches to the model, which answers questions about the invoices.
 
-## Technical highlights
+Getting started
 
-| Topic | What it does |
-|-------|--------------|
-| **Standalone components** | No NgModules: each page declares its own imports. |
-| **Signals** | Local state (filters, selected slot, loading) uses signals and `computed()`. |
-| **Control flow** | Templates use `@if` / `@for` instead of structural directives. |
-| **Lazy loading** | Every page is loaded on demand with `loadComponent`. |
-| **Guards** | `authGuard` protects the app, `roleGuard` limits patient and doctor areas. |
-| **HTTP interceptor** | Adds the JWT to outgoing requests. |
-| **Reactive forms** | Login form with validation messages. |
-| **UX details** | Loading skeletons, toast notifications, responsive layout, visible focus states. |
+Adjust the folder names and commands below to match your repository.
 
-## Demo accounts
+Prerequisites: .NET SDK, Node.js, SQL Server, Ollama (for the RAG), an OpenAI API key.
 
-| Role    | Email                | Password    |
-|---------|----------------------|-------------|
-| Patient | patient@medibook.tn  | Patient123! |
-| Doctor  | doctor@medibook.tn   | Doctor123!  |
+bash
+# 1. Backend API
+cd backend
+dotnet ef database update
+dotnet run
 
-## Getting started
-
-```bash
+# 2. AI service
+cd ai-service
 npm install
-npm start          # http://localhost:4200
-```
+npm start
 
-### With Docker
-```bash
-docker build -t medibook-web .
-docker run -p 8080:80 medibook-web   # http://localhost:8080
-```
+# 3. Front end
+cd frontend
+npm install
+npm start      # http://localhost:4200
 
-## Architecture
+Configuration: set the connection string, JWT secret and OPENAI_API_KEY in your local settings or environment variables. Never commit real keys or real invoice data.
 
-```
-src/app
-├── core      models, auth (signals + localStorage), guards, interceptor, API service, toasts
-├── layout    app shell (sidebar, role-based navigation)
-└── pages     login, patient dashboard, doctors, doctor detail + booking, my appointments, doctor agenda
-```
+How I worked
+Sole developer on the project and Scrum Master: 3 releases, 6 to 8 sprints, user stories with acceptance criteria.
+Requirements analysis and UML modeling (use case and sequence diagrams) before implementation.
+Git with GitFlow, technical documentation.
+Limitations and roadmap
+[ ] Automated tests for the OCR parser and the API
+[ ] Dedicated vector database instead of embeddings stored in SQL Server (for example Qdrant)
+[ ] Live demo deployment
+Author
 
-**Design decision:** `ApiService` returns `Observable`s, exactly like an `HttpClient`-based service. Connecting the real API means replacing the method bodies with HTTP calls. The components do not change.
-
-## Limitations
-- Data is simulated and resets on page refresh.
-- Authentication is a demo (a mock token, no real backend).
-- No automated tests yet.
-
-## Roadmap
-- [ ] Connect the ASP.NET Core API (EF Core, PostgreSQL, JWT)
-- [ ] Unit tests for services and components
-- [ ] React version of the front end
-- [ ] Live demo deployment
-
-## Author
-**Yousser Bouguerra**: Full-Stack Developer (.NET, Angular, React, Node.js)
-
--
+Yousser Bouguerra, Full-Stack Developer (Angular, Node.js / TypeScript, .NET). 
