@@ -4,31 +4,25 @@ Users upload an invoice (from the web or by scanning a QR code with their phone)
 
 Demo
 ## Screenshots
-
-### Login
-| User login | Admin login |
-|:---:|:---:|
-| <img width="300" alt="Login user" src="LIEN_loginuser"> | <img width="300" alt="Login admin" src="LIEN_loginadmin"> |
-
-### Dashboards
-| User dashboard | Admin dashboard |
-|:---:|:---:|
-| <img width="300" alt="User dashboard" src="LIEN_dashboarduser"> | <img width="300" alt="Admin dashboard" src="LIEN_dashboardadmin"> |
+## Screenshots
 
 ### User management (admin)
-| User list | Add a user | User added |
-|:---:|:---:|:---:|
-| <img width="300" alt="User management" src="https://github.com/user-attachments/assets/96ec0f40-b0ff-4d18-8846-6c99d694c49e"> | <img width="300" alt="Add user" src="LIEN_adduser"> | <img width="300" alt="User added" src="https://github.com/user-attachments/assets/2e32c6dd-976b-483b-8d2a-d74644598cf0"> |
-
-| User modified | User deleted |
+| User list | User added |
 |:---:|:---:|
-| <img width="300" alt="User modified" src="LIEN_usermodified"> | <img width="300" alt="User deleted" src="LIEN_usersupprimee"> |
+| <img width="300" alt="User management" src="https://github.com/user-attachments/assets/96ec0f40-b0ff-4d18-8846-6c99d694c49e"> | <img width="300" alt="User added" src="https://github.com/user-attachments/assets/2e32c6dd-976b-483b-8d2a-d74644598cf0"> |
 
+### Invoice workflow
+| Validation request sent | Invoice deleted | Report saved |
+|:---:|:---:|:---:|
+| <img width="300" alt="Validation request" src="https://github.com/user-attachments/assets/426ed18b-31c2-4d9f-9f22-ebd4f7e1700a"> | <img width="300" alt="Invoice deletion" src="https://github.com/user-attachments/assets/c8a0dea0-9afa-4936-bd57-6ae445b46ae9"> | <img width="300" alt="Save report" src="https://github.com/user-attachments/assets/c6730d45-20a6-4486-b601-60dedc45c91b"> |
 
+### Divalto synchronization
+| Synchronization | Synchronization succeeded |
+|:---:|:---:|
+| <img width="300" alt="Synchronization" src="https://github.com/user-attachments/assets/12d8f596-f273-4ea6-ad65-e8d2be313330"> | <img width="300" alt="Synchronization succeeded" src="https://github.com/user-attachments/assets/a32e8aae-663b-435a-846c-1197da5f15e5"> |
 
-
-
-Users
+### AI chatbot
+<img width="250" alt="Chatbot question" src="https://github.com/user-attachments/assets/6369f240-d8dd-4b76-8fd6-2aa568e5d70a">Users
 
 4-step invoice upload stepper (file, OCR extraction, validation, confirmation).
 Mobile upload through a QR code: scan on the desktop page, take the photo with the phone, the invoice appears on the desktop.
