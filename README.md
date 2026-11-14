@@ -1,4 +1,4 @@
-<img width="1111" height="591" alt="login admin 1" src="https://github.com/user-attachments/assets/2f7fc391-5bab-47fc-9880-3c797f7e2c3c" />Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
+Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
 
 Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies and checks it for fraud, then stores it and keeps the user informed in real time. Invoices can be synchronized with Divalto ERP.
 
