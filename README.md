@@ -13,7 +13,15 @@ Users
 4-step invoice upload stepper (file, OCR extraction, validation, confirmation).
 Mobile upload through a QR code: scan on the desktop page, take the photo with the phone, the invoice appears on the desktop.
 Validation pages to review and correct the extracted data.
-Real-time notifications when an invoice status changes (SignalR).
+Real-time notifications when an invoice status changes (SignalR<img width="1101" height="593" alt="adduser" src="https://github.com/user-attachments/assets/df7ca811-a424-4a00-b48f-ac576247a1dc" /><img width="484" height="155" alt="conclusion" src="https://github.com/user-attachments/assets/3a9b197b-0eb0-490f-b611-ed68f6aefdfc" />
+![Uploading chatbot.png…]()
+![Uploading apresmodif.png…]()
+![Uploading analyseia.png…]()
+
+<img width="1097" height="598" alt="addarticle" src="https://github.com/user-attachments/assets/076d6be6-3376-4857-953a-062f4df0ee6a" />
+
+
+).
 Dashboards for admin and user roles.
 
 AI
