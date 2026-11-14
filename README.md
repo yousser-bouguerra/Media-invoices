@@ -4,11 +4,7 @@ Users upload an invoice (from the web or by scanning a QR code with their phone)
 
 Demo
 
-<img width="1103" height="595" alt="dashboardadmin" src="https://github.com/user-attachments/assets/8342d0e8-28c4-4694-97ea-6b04bfc449a6" />
-<img width="1111" height="591" alt="login admin 1" src="https://github.com/user-attachments/assets/96a92def-c043-4693-a20f-f096a457e551" />
-![Uploading loginuser.png…]()
-<img width="1097" height="598" alt="addarticle" src="https://github.com/user-attachments/assets/3d250f6e-6fdf-4755-8aaf-cf8d3cfeab07" />
-<img width="1100" height="610" alt="dashboarduser" src="https://github.com/user-attachments/assets/8c8852c3-a222-42ac-a159-90588d94b83b" />
+
 
 
 
