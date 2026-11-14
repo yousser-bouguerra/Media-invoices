@@ -3,6 +3,9 @@ Invoice digitization platform with AI processing, built as my final-year project
 Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies and checks it for fraud, then stores it and keeps the user informed in real time. Invoices can be synchronized with Divalto ERP.
 
 Demo
+
+
+
 <!-- Drag your demo video (.mp4, under 10 MB) here, or add a GIF: ![Demo](docs/demo.gif) -->
 Features
 
