@@ -6,8 +6,7 @@ Demo
 
 
 
-<!-- Drag your demo video (.mp4, under 10 MB) here, or add a GIF: ![Demo](docs/demo.gif) -->
-Features
+
 
 Users
 
