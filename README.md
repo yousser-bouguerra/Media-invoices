@@ -1,8 +1,28 @@
-Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
+<img width="1111" height="591" alt="login admin 1" src="https://github.com/user-attachments/assets/2f7fc391-5bab-47fc-9880-3c797f7e2c3c" />Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
 
 Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies and checks it for fraud, then stores it and keeps the user informed in real time. Invoices can be synchronized with Divalto ERP.
 
 Demo
+## Screenshots
+
+### Login
+| User login | Admin login |
+|:---:|:---:|
+| <img width="300" alt="Login user" src="LIEN_loginuser"> | <img width="300" alt="Login admin" src="LIEN_loginadmin"> |
+
+### Dashboards
+| User dashboard | Admin dashboard |
+|:---:|:---:|
+| <img width="300" alt="User dashboard" src="LIEN_dashboarduser"> | <img width="300" alt="Admin dashboard" src="LIEN_dashboardadmin"> |
+
+### User management (admin)
+| User list | Add a user | User added |
+|:---:|:---:|:---:|
+| <img width="300" alt="User management" src="https://github.com/user-attachments/assets/96ec0f40-b0ff-4d18-8846-6c99d694c49e"> | <img width="300" alt="Add user" src="LIEN_adduser"> | <img width="300" alt="User added" src="https://github.com/user-attachments/assets/2e32c6dd-976b-483b-8d2a-d74644598cf0"> |
+
+| User modified | User deleted |
+|:---:|:---:|
+| <img width="300" alt="User modified" src="LIEN_usermodified"> | <img width="300" alt="User deleted" src="LIEN_usersupprimee"> |
 
 
 
