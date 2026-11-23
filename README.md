@@ -1,9 +1,45 @@
-Invoice digitization platform with AI processing, built as my final-year project (PFE) at MediaSoft Tunisie.
+# Media-Invoices — Invoice Digitization Platform
 
-Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies and checks it for fraud, then stores it and keeps the user informed in real time. Invoices can be synchronized with Divalto ERP.
+Invoice digitization platform with AI processing, built as my final-year project (PFE) at **MediaSoft Tunisie**.
 
-Demo
+Users upload an invoice (from the web or by scanning a QR code with their phone). The platform extracts the data with OCR, runs it through an AI agent that validates, classifies, and checks it for fraud, then stores it and keeps the user informed in real time. Validated invoices can be synchronized directly with **Divalto ERP**.
 
+---
+
+## My Contribution
+
+I was the **sole developer and Scrum Master** on this project. I designed and built the entire platform end-to-end:
+
+* **ASP.NET Core API:** JWT authentication, BCrypt password hashing, role-based access control (`Administrator` and `User`), and **SignalR** real-time notifications.
+* **Angular Front End:** Web and mobile QR-code invoice upload, user/admin dashboards, invoice validation & rejection workflows, reporting/exports, and real-time notifications.
+* **AI Microservice:** A 5-node **LangGraph** pipeline in Node.js (extraction, validation, classification, anti-fraud, storage), the **OpenAI** conversational chatbot, and the **Ollama** RAG pipeline.
+* **OCR & ERP Integration:** Image preprocessing with ImageSharp, multi-layout Tesseract OCR parsing, and the automated synchronization flow with **Divalto ERP**.
+
+---
+
+## Technical Challenges & Resolutions
+
+### 1. Multi-Layout OCR & Table Extraction
+* **Problem:** Invoices came in two different layouts (**Divalto** and **Mediasoft**), and the raw Tesseract OCR output was inconsistent (skewed scans, uneven spacing, misread decimal separators), causing fields and line-item tables to be extracted wrongly.
+* **Resolution:** Added an **ImageSharp** preprocessing pipeline (grayscale conversion, contrast adjustment, and deskewing) before OCR. Rewrote the parsing service to auto-detect each layout, isolate table boundaries, handle skipped lines, and normalize decimal parsing. Also added a `ClientCode` field with an Entity Framework Core migration.
+* **Result:** Both invoice formats are now parsed reliably by the same unified service.
+
+### 2. Long-Running AI Pipelines & Real-Time Feedback
+* **Problem:** Running OCR followed by the 5-step LangGraph pipeline introduced latency, risking HTTP timeouts and leaving users unsure whether their upload had stalled.
+* **Resolution:** Decoupled file upload from AI execution and integrated **SignalR** hubs in ASP.NET Core to stream live step-by-step status updates (*Extracting*, *Validating*, *Fraud Check Complete*) to the Angular front end.
+* **Result:** Eliminated request timeouts and gave users real-time visibility into invoice processing.
+
+### 3. Deterministic LLM Outputs in LangGraph
+* **Problem:** During extraction and anti-fraud checks, LLM responses occasionally returned malformed JSON or mismatched field types (e.g., strings instead of numbers for totals), breaking downstream C# deserialization.
+* **Resolution:** Enforced strict structured output schemas and validation guardrails inside the LangGraph `StateGraph` nodes, adding conditional retry loops when validation failed before saving to SQL Server.
+* **Result:** Guaranteed strongly-typed, predictable payloads between the Node.js AI service and the ASP.NET Core API.
+
+### 4. Idempotent Divalto ERP Synchronization
+* **Problem:** Network retries or duplicate validation triggers risked pushing the same validated invoice to Divalto ERP multiple times, creating accounting duplicates.
+* **Resolution:** Implemented state-machine status tracking (`Pending` → `Validated` → `Synced` / `SyncFailed`) alongside unique invoice reference checks before executing the ERP sync flow.
+* **Result:** Prevented duplicate ERP entries and allowed failed syncs to be safely retried from the dashboard.
+
+---
 
 
 
